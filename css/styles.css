@@ -83,7 +83,7 @@ address {
   margin: -1px;
   border: 0;
   padding: 0;
-  overflow: hidden;
+  overflow: bv;
 }
 
 /* ========== Components ========== */
@@ -118,67 +118,6 @@ address {
   letter-spacing: 0.03em;
 
   color: var(--section-title-color);
-}
-
-.backdrop {
-  position: fixed;
-  top: 0;
-  left: 0;
-
-  width: 100%;
-  height: 100%;
-
-  background-color: rgba(0, 0, 0, 0.2);
-  transition: all 500ms linear;
-}
-
-.backdrop.is-hidden {
-  opacity: 0;
-  visibility: hidden;
-  pointer-events: none;
-
-  transition: all 500ms linear 700ms;
-}
-
-.backdrop.is-hidden .modal {
-  transform: translate(-50%, -50%) scale(0);
-  transition: transform 1000ms ease-in-out;
-}
-
-.modal {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-
-  transform: translate(-50%, -50%) scale(1);
-
-  width: 528px;
-  height: 581px;
-
-  background-color: #fff;
-
-  transition: transform 1000ms ease-in-out 500ms;
-}
-
-.modal-close-btn {
-  position: absolute;
-  top: 8px;
-  right: 8px;
-
-  width: 30px;
-  height: 30px;
-
-  border: 1px solid rgba(0, 0, 0, 0.1);
-  border-radius: 50%;
-  cursor: pointer;
-
-  align-items: center;
-  justify-content: center;
-}
-
-.modal-btn-icon {
-  width: 18px;
-  height: 18px;
 }
 
 /* ========== End Components ========== */
@@ -321,11 +260,14 @@ address {
   font-size: 16px;
   line-height: 1.875;
   letter-spacing: 0.06em;
+
+  transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .modal-btn:hover,
 .modal-btn:focus {
   border-style: none;
+  background-color: #2196f3;
 }
 
 /* ========== End Hero ========== */
@@ -685,6 +627,227 @@ address {
   margin-left: 10px;
 }
 /*  ========== End Footer ========== */
+
+/*  ========== Backdrop - Modal Form ========== */
+
+.backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+
+  width: 100%;
+  height: 100%;
+
+  background-color: rgba(0, 0, 0, 0.2);
+  transition: all 500ms linear;
+}
+
+.backdrop.is-hidden {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+
+  transition: all 500ms linear 700ms;
+}
+
+.backdrop.is-hidden .modal {
+  transform: translate(-50%, -50%) scale(0);
+  transition: transform 1000ms ease-in-out;
+}
+.modal {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+
+  transform: translate(-50%, -50%) scale(1);
+
+  width: 528px;
+  height: 581px;
+
+  padding: 40px;
+
+  background-color: #fff;
+
+  transition: transform 1000ms ease-in-out 500ms;
+}
+
+.modal-close-btn {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+
+  width: 30px;
+  height: 30px;
+
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: 50%;
+  cursor: pointer;
+
+  align-items: center;
+  justify-content: center;
+}
+
+.modal-btn-icon {
+  width: 18px;
+  height: 18px;
+}
+
+.modal-form {
+  flex-direction: column;
+}
+
+.modal-form-title {
+  margin-bottom: 30px;
+
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 1.15;
+
+  letter-spacing: 0.03em;
+  text-align: center;
+  color: var(--section-title-color);
+}
+
+.modal-form-field {
+  position: relative;
+  margin-bottom: 30px;
+}
+
+.modal-form-field:nth-of-type(3) {
+  margin-bottom: 10px;
+}
+
+.modal-form-field:nth-of-type(4) {
+  margin-bottom: 20px;
+}
+
+.modal-form-field:nth-of-type(5) {
+  margin-bottom: 30px;
+}
+
+.modal-form-label {
+  position: absolute;
+  top: 50%;
+  left: 42px;
+  transform: translateY(-50%);
+
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 1.167;
+  letter-spacing: 0.01em;
+
+  transition: transform 500ms cubic-bezier(0.4, 0, 0.2, 1), color 250ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.modal-form-input {
+  height: 40px;
+  width: 100%;
+
+  padding: 11px 12px 11px 42px;
+
+  border: 1px solid rgba(33, 33, 33, 0.2);
+  border-radius: 4px;
+
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 1.71;
+  letter-spacing: 0.03em;
+
+  color: var(--section-title-color);
+
+  transition: border-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.modal-form-input-icon {
+  width: 18px;
+  height: 18px;
+
+  position: absolute;
+  top: 50%;
+  left: 12px;
+  transform: translateY(-50%);
+
+  transition: all 250ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.modal-form-input:focus {
+  border-color: var(--accent-color);
+}
+
+.modal-form-input:focus + .modal-form-label,
+.modal-form-input:not(:placeholder-shown) + .modal-form-label {
+  transform: translate(-42px, -37px);
+}
+
+.modal-form-input:focus + .modal-form-label {
+  color: var(--accent-color);
+}
+
+.modal-form-input:focus ~ .modal-form-input-icon {
+  fill: var(--accent-color);
+}
+
+.modal-form-label-msg {
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 1.167;
+  letter-spacing: 0.01em;
+
+  transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.modal-form-field.msg:focus-within .modal-form-label-msg {
+  color: var(--accent-color);
+}
+
+.modal-form-input.msg {
+  height: 120px;
+  width: 100%;
+  resize: none;
+
+  padding-left: 12px;
+}
+
+.check-policy-label {
+  display: inline-flex;
+  align-items: center;
+
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 1.71;
+  letter-spacing: 0.03em;
+}
+
+.check-policy-label a {
+  color: var(--accent-color);
+  text-decoration: underline;
+
+  padding-left: 5px;
+}
+
+.check-policy-icon {
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+
+  margin-right: 6px;
+
+  background-image: url(../images/modal/policy-unchecked.svg);
+
+  transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.modal-form-checkbox:checked + .check-policy-icon {
+  background-color: var(--accent-color);
+  background-image: url(../images/modal/policy-checked.svg);
+
+  border-radius: 2px;
+}
+
+.modal-form-button {
+  align-self: center;
+}
+/*  ========== End Modal Form  ========== */
 
 /*  ========== Portfolio ========== */
 .portfolio {
